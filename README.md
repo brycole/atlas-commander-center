@@ -1,5 +1,5 @@
 
-# Atlas Commander Center  https://t.me/atlascommandercenter
+# Atlas Commander Center  [telegram](https://t.me/atlascommandercenter)
 
 System for atlas automation
 
@@ -7,7 +7,7 @@ System for atlas automation
 
 
 ## Importan! WIP
-It is a project under development, the code is not optimized due to the amount of testing I had to do to achieve this result. Work in windows console, no need browser or Wallet.
+It is a project under development, the code is not optimized due to the amount of testing I had to do to achieve this result. **Work in windows console, no need browser or Wallet.**
 
 ## Installation
 
