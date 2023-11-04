@@ -52,3 +52,5 @@ You must also add your 'privateKey' in the correct format in the file  `userConf
 npm start
 
 ## DEMO
+
+![](https://github.com/Tywors/atlas-commander-center/blob/main/demo.gif)
