@@ -33,6 +33,8 @@ You must also add your 'privateKey' in the correct format in the file  `userConf
 
 ✔ Undock
 
+✔ Teleport
+
 ✔ Start Mine
 
 ✔ Stop Mine
