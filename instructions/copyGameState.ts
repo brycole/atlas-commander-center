@@ -1,0 +1,68 @@
+import { TransactionInstruction, PublicKey, AccountMeta } from "@solana/web3.js" // eslint-disable-line @typescript-eslint/no-unused-vars
+import BN from "bn.js" // eslint-disable-line @typescript-eslint/no-unused-vars
+import * as borsh from "@coral-xyz/borsh" // eslint-disable-line @typescript-eslint/no-unused-vars
+import * as types from "../types" // eslint-disable-line @typescript-eslint/no-unused-vars
+import { PROGRAM_ID } from "../programId"
+
+export interface CopyGameStateArgs {
+  input: types.ManageGameInputFields
+}
+
+export interface CopyGameStateAccounts {
+  gameAndProfile: {
+    /** The key authorized for this instruction */
+    key: PublicKey
+    /** The [`Profile`] account */
+    profile: PublicKey
+    /** The [`Game`] account */
+    gameId: PublicKey
+  }
+  /** The funder for the new `GameState` */
+  funder: PublicKey
+  /** The old [`GameState`] account */
+  oldGameState: PublicKey
+  /**
+   * The [`GameState`] account
+   * This will and should fail if there already exists a `GameState`for the desired `update_id`
+   */
+  newGameState: PublicKey
+  /** The system program */
+  systemProgram: PublicKey
+}
+
+export const layout = borsh.struct([types.ManageGameInput.layout("input")])
+
+export function copyGameState(
+  args: CopyGameStateArgs,
+  accounts: CopyGameStateAccounts,
+  programId: PublicKey = PROGRAM_ID
+) {
+  const keys: Array<AccountMeta> = [
+    { pubkey: accounts.gameAndProfile.key, isSigner: true, isWritable: false },
+    {
+      pubkey: accounts.gameAndProfile.profile,
+      isSigner: false,
+      isWritable: false,
+    },
+    {
+      pubkey: accounts.gameAndProfile.gameId,
+      isSigner: false,
+      isWritable: false,
+    },
+    { pubkey: accounts.funder, isSigner: true, isWritable: true },
+    { pubkey: accounts.oldGameState, isSigner: false, isWritable: false },
+    { pubkey: accounts.newGameState, isSigner: false, isWritable: true },
+    { pubkey: accounts.systemProgram, isSigner: false, isWritable: false },
+  ]
+  const identifier = Buffer.from([95, 77, 254, 162, 248, 168, 17, 16])
+  const buffer = Buffer.alloc(1000)
+  const len = layout.encode(
+    {
+      input: types.ManageGameInput.toEncodable(args.input),
+    },
+    buffer
+  )
+  const data = Buffer.concat([identifier, buffer]).slice(0, 8 + len)
+  const ix = new TransactionInstruction({ keys, programId, data })
+  return ix
+}

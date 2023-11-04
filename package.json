@@ -1,0 +1,24 @@
+{
+  "name": "atlas-commander",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx ts-node main.ts"
+  },
+  "author": "TyworS",
+  "license": "ISC",
+  "dependencies": {
+    "@solana/spl-token": "^0.3.8",
+    "@solana/web3.js": "^1.87.2",
+    "@types/cli-table": "^0.3.3",
+    "axios": "^1.5.1",
+    "bn": "^1.0.5",
+    "bn.js": "^5.2.1",
+    "cli-table": "^0.3.11",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/bn.js": "^5.1.3"
+  }
+}
