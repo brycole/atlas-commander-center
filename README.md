@@ -23,7 +23,7 @@ The planets and their resources are configured for 'USTUR'. If this is your sect
 
 You must also add your 'privateKey' in the correct format in the file  `userConfig.ts`
 
-# `Mining Loop using ⚠ Teleport = 0Fuel ⚠ `
+# `⚠ Teleport = 0Fuel ⚠ Mining Loop`
 
 ✔ Full Refuel
 
