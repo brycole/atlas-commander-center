@@ -45,4 +45,8 @@ You must also add your 'privateKey' in the correct format in the file  `userConf
 
 ⏰ Automatically configure the file `userConfig.ts`
 
+## RUN
+
+npm start
+
 ## DEMO
